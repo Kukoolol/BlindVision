@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 0;
+            transition: background-color 0.1s; /* Transition effect for color change */
+        }
+
+        .red-button {
+            background-color: #FF0000; /* Initial color for first button (red) */
+        }
+
+        .blue-button {
+            top: 50%;
+            background-color: #0000FF; /* Initial color for second button (blue) */
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="file" id="imageInput">
+        <button class="button red-button" onclick="document.getElementById('imageInput').click()">Choose File</button>
+        <button class="button blue-button" onclick="uploadImage()">Upload Image</button>
+    </div>
+
+    <script>
+        setInterval(changeColors, 500); // Change colors every 0.5 second
+        var alternate = false; // Variable to alternate between blue and red
+
+        function changeColors() {
+            var redButton = document.querySelector('.red-button');
+            var blueButton = document.querySelector('.blue-button');
+
+            if (alternate) {
+                redButton.style.backgroundColor = '#0000FF'; // Blue color for first button
+                blueButton.style.backgroundColor = '#FF0000'; // Red color for second button
+            } else {
+                redButton.style.backgroundColor = '#FF0000'; // Red color for first button
+                blueButton.style.backgroundColor = '#0000FF'; // Blue color for second button
+            }
+
+            alternate = !alternate; // Toggle between red and blue
+        }
+
+        function uploadImage() {
+            var input = document.getElementById('imageInput');
+            var file = input.files[0];
+            if (!file) {
+                alert("Please select an image file.");
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append('image', file);
+
+            fetch('http://127.0.0.1:5000/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Image Submitted");
+                    // Disable the input field after successful upload
+                    document.getElementById('imageInput').disabled = true;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
+
