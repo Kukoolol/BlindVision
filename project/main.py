@@ -36,7 +36,7 @@ def extract_text_from_image(image_path):
         return text.strip()
 
 # Path to the image file
-image_path = '/Users/naren/project/OCR.jpeg'
+image_path = '/Users/naren/project/optical-character-recognition-ocr.jpeg'
 
 # Extract text from the image
 extracted_text = extract_text_from_image(image_path)
@@ -102,27 +102,54 @@ def print_braille(braille):
         for cell in braille:
             line += '1' if cell[i][0] else '0'
             line += '1' if cell[i][1] else '0'
-        print(line)
+            line += '\n'
+        print(line+'\n')
 
 
 braille_representation = text_to_braille(extracted_text)
-print("\nBraille representation:")
+
 
 
 
 import serial
 
-SerialObj = serial.Serial('/dev/cu.usbmodem11101') # COMxx  format on Windows
-                  
-SerialObj.baudrate = 9600  # set Baud rate to 9600
-SerialObj.bytesize = 8   # Number of data bits = 8
-SerialObj.parity  ='N'   # No parity
-SerialObj.stopbits = 1   # Number of Stop bits = 1
-time.sleep(5)
-for letter in text_list:
-     SerialObj.write(letter.lower().encode())    #transmit 'A' (8bit) to micro/Arduino
-     time.sleep(1)
+try:
+    SerialObj = serial.Serial('/dev/cu.usbmodem11101') # COMxx  format on Windows
+                    
+    SerialObj.baudrate = 9600  # set Baud rate to 9600
+    SerialObj.bytesize = 8   # Number of data bits = 8
+    SerialObj.parity  ='N'   # No parity
+    SerialObj.stopbits = 1   # Number of Stop bits = 1
+    time.sleep(5)
+    for letter in text_list:
+        SerialObj.write(letter.lower().encode())    #transmit 'A' (8bit) to micro/Arduino
+        time.sleep(1)
+except:
+    print("\nBraille representation:")
+    braille_dict = {
+        'A': '⠁', 'B': '⠃', 'C': '⠉', 'D': '⠙', 'E': '⠑',
+        'F': '⠋', 'G': '⠛', 'H': '⠓', 'I': '⠊', 'J': '⠚',
+        'K': '⠅', 'L': '⠇', 'M': '⠍', 'N': '⠝', 'O': '⠕',
+        'P': '⠏', 'Q': '⠟', 'R': '⠗', 'S': '⠎', 'T': '⠞',
+        'U': '⠥', 'V': '⠧', 'W': '⠺', 'X': '⠭', 'Y': '⠽',
+        'Z': '⠵',
+        
+        '1': '⠼⠁', '2': '⠼⠃', '3': '⠼⠉', '4': '⠼⠙', '5': '⠼⠑',
+        '6': '⠼⠋', '7': '⠼⠛', '8': '⠼⠓', '9': '⠼⠊', '0': '⠼⠚',
+        
+        '.': '⠲', ',': '⠂', ';': '⠆', '?': '⠦', '!': '⠖',
+        "'": '⠄', '"': '⠐⠄', '-': '⠤', '(': '⠐⠣', ')': '⠐⠜',
+        '[': '⠦⠴', ']': '⠦⠦', '*': '⠔', '/': '⠸⠌', '&': '⠯'
+    }
 
+
+    
+    braille_text = ''.join(braille_dict.get(char.upper(), char) for char in extracted_text)
+    print(braille_text)
+    
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConnection to Arduino Failure: Try Checking Port Number / Reconnect\n\n\n\n\n\n\n\n")
+    raise
+    
 
 
 
