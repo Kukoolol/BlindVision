@@ -1,638 +1,183 @@
+#include<Servo.h>
+
+  Servo top;
+  Servo middle;
+  Servo bottom;
+
+
 void setup() {
   Serial.begin(9600);
-  pinMode(2, OUTPUT);
+  pinMode(2,OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(5, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
 
+  int HH=180;
+  int HL=120;
+  int LH=60;
+  int LL=0;
+   
+
+  top.attach(2);
+  middle.attach(3);
+  bottom.attach(4);
+
 }
 
 void loop() {
+  
+  int HH=180;
+  int HL=120;
+  int LH=60;
+  int LL=0;
+
   if (Serial.available()) 
    {
      
-     char ch = Serial.read();     
-     switch(ch)
-     {
-       case 'a':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+     char ch = Serial.read();  
+     
+     switch(ch){
+
+       case ('a'):
+            top.write(HL);
+            middle.write(LL);
+            bottom.write(LL);
+            
             break;
-        case 'b':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+
+        case ('b'):
+            top.write(HL);
+            middle.write(HL);
+            bottom.write(LL);
             break;
-        case 'c':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+
+        case ('c'):
+            top.write(HH);
+            middle.write(LL);
+            bottom.write(LL);
             break;
-        case 'd':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+        case ('d'):
+            top.write(HH);
+            middle.write(LH);
+            bottom.write(LL);
             break;
-        case 'e':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+        case ('e'):
+            top.write(HL);
+            middle.write(LH);
+            bottom.write(LL);
             break;
-        case 'f':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+        case ('f'):
+            top.write(HH);
+            middle.write(HL);
+            bottom.write(LL);
             break;
-        case 'g':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+        case ('g'):
+            top.write(HH);
+            middle.write(HH);
+            bottom.write(LL);
             break;
-        case 'h':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+        case ('h'):
+            top.write(HL);
+            middle.write(HH);
+            bottom.write(LL);
             break;
-        case 'i':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+        case ('i'):
+            top.write(LH);
+            middle.write(HL);
+            bottom.write(LL);
             break;
-        case 'j':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+        case ('j' || '0'):
+            top.write(LH);
+            middle.write(HH);
+            bottom.write(LL);
             break;
         case 'k':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HL);
+            middle.write(LL);
+            bottom.write(HL);
             break;
         case 'l':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HL);
+            middle.write(HL);
+            bottom.write(HL);
             break;
         case 'm':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HH);
+            middle.write(LL);
+            bottom.write(HL);
             break;
         case 'n':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HH);
+            middle.write(LH);
+            bottom.write(HL);
             break;
         case 'o':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HL);
+            middle.write(LH);
+            bottom.write(HL);
             break;
         case 'p':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HH);
+            middle.write(HL);
+            bottom.write(HL);
             break;
         case 'q':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HH);
+            middle.write(HH);
+            bottom.write(HL);
             break;
         case 'r':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HL);
+            middle.write(HH);
+            bottom.write(HL);
             break;
         case 's':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(LH);
+            middle.write(HL);
+            bottom.write(HL);
             break;
         case 't':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(LH);
+            middle.write(HH);
+            bottom.write(HL);
             break;
         case 'u':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HL);
+            middle.write(LL);
+            bottom.write(HH);
             break;
         case 'v':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HL);
+            middle.write(HL);
+            bottom.write(HH);
             break;
         case 'w':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(LH);
+            middle.write(HH);
+            bottom.write(LH);
             break;
         case 'x':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HH);
+            middle.write(LL);
+            bottom.write(HH);
             break;
         case 'y':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HH);
+            middle.write(LH);
+            bottom.write(HH);
             break;
         case 'z':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case ' ':
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            break;
-        case '0':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '1':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '2':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '3':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '4':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '5':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '6':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '7':
-            digitalWrite(2, HIGH);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '8':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '9':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '!':
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '?':
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, HIGH);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case ',':
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, HIGH);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
-        case '.':
-            digitalWrite(2, LOW);
-            digitalWrite(3, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(5, HIGH);
-            digitalWrite(6, LOW);
-            digitalWrite(7, HIGH);
-            delay(1500);
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
+            top.write(HL);
+            middle.write(LH);
+            bottom.write(HH);
             break;
         default:
-            // Turn off all LEDs for unknown characters
-            digitalWrite(2, LOW);
-            digitalWrite(3, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(5, LOW);
-            digitalWrite(6, LOW);
-            digitalWrite(7, LOW);
-            break;
+            // Turn off all motors for unknown characters 
+            top.write(LL);
+            middle.write(LL);
+            bottom.write(LL);
     }
-   }}
+   }
+  }
